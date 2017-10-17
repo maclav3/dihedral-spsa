@@ -14,9 +14,10 @@ iterators. In python, iterators can act very similar to arrays.
 numpy (a number processing library) is not used here so that pypy (an alternate
 python implementation which is faster) can be used.
 """
-from itertools import count
+
 import random
 from abc import *
+from itertools import count
 
 
 # A simple function that returns its argument
