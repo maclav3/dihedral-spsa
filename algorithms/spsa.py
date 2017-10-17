@@ -98,11 +98,11 @@ class LossFunction(ABC):
 
     @abstractmethod
     def L(self, theta):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def epsilon(self, theta):
-        pass
+        raise NotImplementedError
 
     def y(self, theta):
         return self.L(theta) + self.epsilon(theta)
