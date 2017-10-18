@@ -55,5 +55,5 @@ class Structure(ABC):
     # reads a structure from file at filename and fills atoms
     @abstractmethod
     def __init__(self, filename: str):
-        self.atoms = None
+        self._atoms = None
         raise NotImplementedError
