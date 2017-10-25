@@ -6,4 +6,4 @@ class Topology(ABCMeta):
     def __init__(self):
         self.bonds = None
         self.angles = None
-        self.
+        self.dihedrals = None
