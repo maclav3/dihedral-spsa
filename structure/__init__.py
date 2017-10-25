@@ -1,5 +1,4 @@
 from abc import *
-from typing import List
 
 import numpy as np
 from numpy.linalg import norm
@@ -7,23 +6,23 @@ from numpy.linalg import norm
 _normalize = lambda v: v / norm(v)
 
 
-class Atom(object):
-    def __init__(self, x: float, y: float, z: float):
+class Atom(ABCMeta):
+    def __init__(self, x, y, z):
         self.r = np.array([x, y, z])
 
     @staticmethod
-    def distance(i: 'Atom', j: 'Atom') -> float:
+    def distance(i, j):
         return norm(i.r - j.r)
 
     @staticmethod
-    def angle(i: 'Atom', j: 'Atom', k: 'Atom') -> float:
+    def angle(i, j, k):
         ji = _normalize(j.r - i.r)
         jk = _normalize(j.r - k.r)
 
         return np.arccos(np.dot(ji, jk))
 
     @staticmethod
-    def dihedral(i: 'Atom', j: 'Atom', k: 'Atom', l: 'Atom') -> float:
+    def dihedral(i, j, k, l):
         # https://stackoverflow.com/questions/20305272/
         # dihedral-torsion-angle-from-four-points-in-cartesian-coordinates-in-python
         ji = j.r - i.r
@@ -46,14 +45,14 @@ class Atom(object):
         return np.arctan2(y, x)
 
 
-class Structure(ABC):
+class Structure(ABCMeta):
     @property
     @abstractmethod
-    def atoms(self) -> List[Atom]:
+    def atoms(self):
         return self.atoms
 
     # reads a structure from file at filename and fills atoms
     @abstractmethod
-    def __init__(self, filename: str):
+    def __init__(self, filename):
         self._atoms = None
         raise NotImplementedError
